@@ -74,8 +74,10 @@ class Admin extends CI_Controller
     }
     public function kelven()
     {
+        $data['admin'] = $this->model_admin->tampil()->result();
+        $atas['admin'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
         $this->load->view('admin/head');
-        $this->load->view('admin/header');
+        $this->load->view('admin/header',$atas);
         $this->load->view('admin/leftside');
         $this->load->view('admin/konten_kelvendor');
         $this->load->view('admin/footer');
