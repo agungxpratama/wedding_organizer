@@ -1,4 +1,24 @@
-<div class="row">
+<div class="dashboard-wrapper">
+<!-- <div class="container"> -->
+<div class="container-fluid dashboard-content">
+    <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="page-header">
+                <h2 class="pageheader-title">Keranjang </h2>
+                <!-- <p class="pageheader-text">Proin placerat ante duiullam scelerisque a velit ac porta, fusce sit amet vestibulum mi. Morbi lobortis pulvinar quam.</p> -->
+                <div class="page-breadcrumb">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Keranjang</a></li>
+                            <!-- <li class="breadcrumb-item active" aria-current="page">Blank Pageheader</li> -->
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 
         <div class="card">
@@ -18,20 +38,23 @@
                         $no = 1;
                         foreach ($this->cart->contents() as $items) : ?>
 
-                            <tr>
-                                <td><?php echo $no++ ?></td>
-                                <td><?php echo $items['name'] ?></td>
-                                <td><?php echo $items['qty'] ?></td>
-                                <td><?php echo $items['price'] ?></td>
-                                <td><?php echo $items['subtotal'] ?></td>
-                            </tr>
+                        <tr>
+                            <td><?php echo $no++ ?></td>
+                            <td><?php echo $items['name'] ?></td>
+                            <td><?php echo $items['qty'] ?></td>
+                            <td><?php echo $items['price'] ?></td>
+                            <td><?php echo $items['subtotal'] ?></td>
+                        </tr>
 
-                        <?php endforeach; ?>
+                    <?php endforeach; ?>
 
-                    </thead>
+                </thead>
+                <?php print_r($this->cart->contents()); ?>
 
-
-                </table>
-            </div>
+            </table>
         </div>
     </div>
+</div>
+</div>
+</div>
+<!-- <div class="row"> -->

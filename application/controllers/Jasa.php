@@ -133,10 +133,12 @@ class Jasa extends CI_Controller
 
     public function detail_keranjang()
     {
+        $atas['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
+
         $this->load->view('templates/head');
-        $this->load->view('templates/header');
+        $this->load->view('templates/header', $atas);
         $this->load->view('templates/leftside');
-        $this->load->view('jasa/detai_keranjang');
+        $this->load->view('jasa/detail_keranjang');
         $this->load->view('templates/js');
     }
 }
