@@ -27,6 +27,10 @@ class Home extends CI_Controller
         $this->load->view('templates/footer');
         $this->load->view('templates/js');
     }
+    public function FunctionName()
+    {
+        $this->load->view('home/index');
+    }
     public function tambah_pemesanan()
     {
         $nama_vendor = $this->input->post('nama_vendor');
