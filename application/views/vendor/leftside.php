@@ -42,7 +42,7 @@
                             </div>
                         </li>
                         <li class="nav-item ">
-                            <a class="nav-link " href="<?= base_url('vendor/tambah_data') ?>"><i class="fa fa-fw fa-user-circle"></i>Tambah Paket</a>
+                            <a class="nav-link " href="<?= base_url('vendor/tambah') ?>"><i class="fa fa-fw fa-user-circle"></i>Tambah Paket</a>
                             <div id="submenu-1" class="collapse submenu">
                                 <!-- <ul class="nav flex-column">
                                         <li class="nav-item">

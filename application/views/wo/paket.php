@@ -60,8 +60,8 @@
                                     <li>Upacara Acara Adat Live</li>
                                     <li>Hiburan</li>
                                 </ul>
-                                <a href="<?= base_url('home/pemesanan') ?>" class="btn btn-primary">Lanjutkan Pemesanan</a>
-                                <?php echo anchor('jasa/tambah_ke_pesanan/' . $wo->idjasa, '<div class="btn btn-primary">Tambah Pesanan
+                                <a href="<?= base_url('beranda/detail_keranjang') ?>" class="btn btn-primary">Lanjutkan Pemesanan</a>
+                                <?php echo anchor('baranda/tambah_keranjang/' . $wo->idjasa, '<div class="btn btn-primary">Tambah Pesanan
                     </div>') ?>
                             </div>
                         </div>

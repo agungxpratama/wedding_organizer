@@ -36,123 +36,33 @@
                              <th scope="col">Alamat</th>
                              <th scope="col">No HP/Telp </th>
                              <th scope="col">Pesanan</th>
-                             <th scope="col">Keterangan</th>
+                             <th scope="col">Harga</th>
                              <th scope="col">Aksi</th>
 
                          </tr>
                      </thead>
-                     <tbody>
-                         <tr>
-                             <th scope="row">1</th>
-                             <td>Mark</td>
-                             <td>Bandung</td>
-                             <td>+62</td>
-                             <td>Otto</td>
-                             <td>...</td>
-                             <td>
-                                 <a href="#" class="btn btn-primary active">Rincian</a>
-                             </td>
-                         </tr>
-                         <tr>
-                             <th scope="row">2</th>
-                             <td>Jacob</td>
-                             <td>Bandung</td>
-                             <td>+62</td>
-                             <td>Thornton</td>
-                             <td>...</td>
-                             <td>
-                                 <a href="#" class="btn btn-primary active">Rincian</a>
-                             </td>
-                         </tr>
-                         <tr>
-                             <th scope="row">3</th>
-                             <td>Larry</td>
-                             <td>Bandung</td>
-                             <td>+62</td>
-                             <td>the Bird</td>
-                             <td>...</td>
-                             <td>
-                                 <a href="#" class="btn btn-primary active">Rincian</a>
-                             </td>
-                         </tr>
-                         <tr>
-                             <th scope="row">4</th>
-                             <td>Larry</td>
-                             <td>Bandung</td>
-                             <td>+62</td>
-                             <td>the Bird</td>
-                             <td>...</td>
-                             <td>
-                                 <a href="#" class="btn btn-primary active">Rincian</a>
-                             </td>
-                         </tr>
-                         <tr>
-                             <th scope="row">5</th>
-                             <td>Larry</td>
-                             <td>Bandung</td>
-                             <td>+62</td>
-                             <td>the Bird</td>
-                             <td>...</td>
-                             <td>
-                                 <a href="#" class="btn btn-primary active">Rincian</a>
-                             </td>
-                         </tr>
-                         <tr>
-                             <th scope="row">6</th>
-                             <td>Larry</td>
-                             <td>Bandung</td>
-                             <td>+62</td>
-                             <td>the Bird</td>
-                             <td>...</td>
-                             <td>
-                                 <a href="#" class="btn btn-primary active">Rincian</a>
-                             </td>
-                         </tr>
-                         <tr>
-                             <th scope="row">7</th>
-                             <td>Larry</td>
-                             <td>Bandung</td>
-                             <td>+62</td>
-                             <td>the Bird</td>
-                             <td>...</td>
-                             <td>
-                                 <a href="#" class="btn btn-primary active">Rincian</a>
-                             </td>
-                         </tr>
-                         <tr>
-                             <th scope="row">8</th>
-                             <td>Larry</td>
-                             <td>Bandung</td>
-                             <td>+62</td>
-                             <td>the Bird</td>
-                             <td>...</td>
-                             <td>
-                                 <a href="#" class="btn btn-primary active">Rincian</a>
-                             </td>
-                         </tr>
-                         <tr>
-                             <th scope="row">9</th>
-                             <td>Larry</td>
-                             <td>Bandung</td>
-                             <td>+62</td>
-                             <td>the Bird</td>
-                             <td>...</td>
-                             <td>
-                                 <a href="#" class="btn btn-primary active">Rincian</a>
-                             </td>
-                         </tr>
-                         <tr>
-                             <th scope="row">10</th>
-                             <td>Larry</td>
-                             <td>Bandung</td>
-                             <td>+62</td>
-                             <td>the Bird</td>
-                             <td>...</td>
-                             <td>
-                                 <a href="#" class="btn btn-primary active">Rincian</a>
-                             </td>
-                         </tr>
+                     <tbody><?php
+                     // print_r($pesanan)
+                      ?>
+                         <?php $no = 1; foreach ($pesanan as $p): ?>
+                             <tr>
+                                 <th scope="row"><?= $no++ ?></th>
+                                 <td><?= $p->username ?></td>
+                                 <td></td>
+                                 <td></td>
+                                 <td><?= $p->name ?></td>
+                                 <td><?= $p->harga ?></td>
+                                 <td>
+                                    <?php if ($p->status == 0): ?>
+                                        <a href="prosesPesanan/<?= $p->id_pesanan  ?>" class="btn btn-primary active">Proses</a>
+                                    <?php elseif ($p->status == 1): ?>
+                                        <a href="Admin" class="btn btn-primary disabled">Menunggu Pemesan</a>
+                                    <?php else: ?>
 
+                                    <?php endif; ?>
+                                 </td>
+                             </tr>
+                         <?php endforeach; ?>
                      </tbody>
                  </table>
              </div>

@@ -33,24 +33,42 @@
                             <th scope="col">Harga</th>
                             <th scope="col">Sub Total</th>
                         </tr>
-
-                        <?php
-                        $no = 1;
-                        foreach ($this->cart->contents() as $items) : ?>
-
-                        <tr>
-                            <td><?php echo $no++ ?></td>
-                            <td><?php echo $items['name'] ?></td>
-                            <td><?php echo $items['qty'] ?></td>
-                            <td><?php echo $items['price'] ?></td>
-                            <td><?php echo $items['subtotal'] ?></td>
-                        </tr>
-
-                    <?php endforeach; ?>
-
                 </thead>
-                <?php print_r($this->cart->contents()); ?>
+                <tbody>
+                    <?php
+                    $jumlah = 0;
+                    $no = 1;
+                    foreach ($this->cart->contents() as $items) : ?>
 
+                    <tr>
+                        <td><?php echo $no++ ?></td>
+                        <td><?php echo $items['name'] ?></td>
+                        <td><?php echo $items['qty'] ?></td>
+                        <td><?php echo $items['price'] ?></td>
+                        <td><?php echo number_format($items['subtotal'], 0, ',', '.') ?></td>
+                    </tr>
+                    <?php $jumlah += $items['subtotal'] ?>
+                <?php endforeach; ?>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <th>Jumlah</th>
+                        <th>Rp. <?= number_format($jumlah, 0, ',', '.') ?></th>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <a href="simpan_pesanan" class="btn btn-primary text text-white" name="button">Simpan Pesanan</a>
+                        </td>
+                    </tr>
+                </tfoot>
+                <?php print_r($this->cart->contents()); ?>
             </table>
         </div>
     </div>

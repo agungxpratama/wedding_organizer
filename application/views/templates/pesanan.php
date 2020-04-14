@@ -36,11 +36,31 @@
                                     <th scope="col">Nama Vendor</th>
                                     <th scope="col">Paket</th>
                                     <th scope="col">Harga</th>
-                                    <th scope="col">Aksi</th>
+                                    <th scope="col">Status</th>
                                 </tr>
-
-
                             </thead>
+                            <?php
+                            print_r($pesanan);
+                             ?>
+                            <tbody>
+                                <?php $no = 1; foreach ($pesanan as $p): ?>
+                                    <tr>
+                                        <td><?= $no++ ?></td>
+                                        <td><?= $p->nama_vendor ?></td>
+                                        <td><?= $p->paket ?></td>
+                                        <td><?= $p->harga ?></td>
+                                        <td>
+                                            <?php if ($p->status == 0): ?>
+                                                <a href="Admin" class="btn btn-primary disabled">Belum diProses</a>
+                                            <?php elseif ($p->status == 1): ?>
+                                                <a href="<?= $p->id_pesanan  ?>" class="btn btn-primary active">Lengkapi Data</a>
+                                            <?php else: ?>
+
+                                            <?php endif; ?>
+                                        </td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            </tbody>
 
 
                         </table>

@@ -40,9 +40,24 @@
                                     <th scope="col">Nama</th>
                                     <th scope="col">Alamat</th>
                                     <th scope="col">NoHp</th>
+                                    <th scope="col">Email</th>
                                     <th scope="col">Aksi</th>
                                 </tr>
                             </thead>
+                            <tbody>
+                                <?php
+                                print_r($konsumen);
+                                $no = 0;
+                                foreach ($konsumen as $k): ?>
+                                    <tr>
+                                        <td><?= $no++ ?></td>
+                                        <td><?= $k->nama ?></td>
+                                        <td><?= $k->alamat ?></td>
+                                        <td><?= $k->no_telp ?></td>
+                                        <td><?= $k->email ?></td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            </tbody>
                         </table>
 
                     </div>

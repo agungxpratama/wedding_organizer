@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.4
+-- version 5.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 01, 2020 at 12:28 PM
--- Server version: 10.1.37-MariaDB
--- PHP Version: 7.3.0
+-- Generation Time: Apr 14, 2020 at 08:22 AM
+-- Server version: 10.1.31-MariaDB
+-- PHP Version: 7.2.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -43,7 +43,9 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`idadmin`, `nama`, `username`, `password`, `role_id`, `image`, `email`) VALUES
-(1, 'syahvira', 'viraw', '123456', 3, 'default.png', 'vira@gmail.com');
+(1, 'syahvira', 'viraw', '123456', 3, 'default.png', 'vira@gmail.com'),
+(2, 'qwe', 'qwe', '123', 3, 'default.png', 'qwe@qwe.qwe'),
+(3, 'qwe', 'qwe', '123', 3, 'default.png', 'qwe@qwe.qwe');
 
 -- --------------------------------------------------------
 
@@ -58,17 +60,45 @@ CREATE TABLE `konsumen` (
   `image` varchar(123) NOT NULL,
   `username` varchar(125) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `role_id` int(11) NOT NULL
+  `role_id` int(11) NOT NULL,
+  `alamat` varchar(255) NOT NULL,
+  `no_telp` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `konsumen`
 --
 
-INSERT INTO `konsumen` (`idkonsumen`, `nama`, `email`, `image`, `username`, `password`, `role_id`) VALUES
-(17, 'baga', 'bagas@gmail.com', 'default.png', 'q', '1212', 1),
-(18, 'pira', 'pira@gmail.com', 'default.png', 'pira12', '123456', 1),
-(19, 'syahvirawindianwar', 'pira@gmail.com', 'default.png', 'pira123', '123456', 1);
+INSERT INTO `konsumen` (`idkonsumen`, `nama`, `email`, `image`, `username`, `password`, `role_id`, `alamat`, `no_telp`) VALUES
+(17, 'baga', 'bagas@gmail.com', 'default.png', 'q', '1212', 1, '', ''),
+(18, 'pira', 'pira@gmail.com', 'default.png', 'pira12', '123456', 1, '', ''),
+(19, 'syahvirawindianwar', 'pira@gmail.com', 'default.png', 'pira123', '123456', 1, '', ''),
+(20, 'qwe', 'qwe@qwe.qwe', 'default.png', 'qwe', '123', 1, '', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pesanan`
+--
+
+CREATE TABLE `pesanan` (
+  `id_pesanan` int(11) NOT NULL,
+  `id_vendor` int(11) NOT NULL,
+  `qty` int(11) NOT NULL,
+  `price` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `status` int(11) NOT NULL,
+  `tgl_pesan` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `pesanan`
+--
+
+INSERT INTO `pesanan` (`id_pesanan`, `id_vendor`, `qty`, `price`, `name`, `username`, `status`, `tgl_pesan`) VALUES
+(1, 4, 1, 20000000, 'Cantika wedding', '8', 1, '0000-00-00'),
+(2, 4, 1, 20000000, 'Cantika wedding', '8', 0, '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -95,7 +125,6 @@ INSERT INTO `tb_jasa` (`idjasa`, `fk_idvendor`, `nama_vendor`, `kategori`, `pake
 (3, 0, 'lumba lumba project', 'hiburan', 'A', 700000, 'Band dari purwakarta bisa untuk acara pernikahan dan tidak ', 'taekook!! on Twitter.jpg'),
 (4, 2, 'Cantika wedding', 'wo', 'silver', 20000000, 'Makeup pengantin dan wadrobe \r\ndekorasi \r\nfoto dan video\r\nhiburan', ''),
 (6, 0, 'abi', 'dekorasi', '21', 5000, 'asd', 'IMG-20190108-WA00371.jpg'),
-(7, 0, 'lili', 'hiburan', 'ac', 1000000, 'okeee', ''),
 (8, 0, 'lili', 'hiburan', 'ac', 1000000, 'oke', '');
 
 -- --------------------------------------------------------
@@ -114,7 +143,6 @@ CREATE TABLE `tb_kategori` (
 --
 
 INSERT INTO `tb_kategori` (`idkategori`, `nama_kategori`) VALUES
-(1, 'hiburan'),
 (2, 'wo');
 
 -- --------------------------------------------------------
@@ -137,6 +165,13 @@ CREATE TABLE `tb_transaksi` (
   `norek` varchar(20) NOT NULL,
   `batas_pelunasan` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tb_transaksi`
+--
+
+INSERT INTO `tb_transaksi` (`idtransaksi`, `fk_idkonsumen`, `fk_idvendor`, `paket`, `harga`, `nama_lengkap`, `alamat`, `no_hp`, `tglpernikahan`, `keterangan`, `norek`, `batas_pelunasan`) VALUES
+(1, 8, 4, 'silver', 20000000, '', '', '', '0000-00-00', '', '', '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -192,7 +227,10 @@ INSERT INTO `user` (`idUser`, `username`, `password`, `role_id`, `nama`, `email`
 (10, 'erlina12', '12345', 2, 'erlina', 'erlina@gmail.com', 'default.png'),
 (11, 'viraw', '123456', 3, 'syahvira windianwar', 'vira@gmail.com', '(14).jpg'),
 (12, 'pira123', '123456', 1, 'syahvirawindianwar', 'pira@gmail.com', 'Bts_Wallpaper_Taehyung_Wallpapers_49_Ideas.jpg'),
-(13, 'monzwedding', '12345', 2, 'Ema Ratna puri', 'ema@gmail.com', 'default.png');
+(13, 'monzwedding', '12345', 2, 'Ema Ratna puri', 'ema@gmail.com', 'default.png'),
+(14, 'qwe', '123', 3, 'qwe', 'qwe@qwe.qwe', 'default.png'),
+(15, 'qwe', '123', 3, 'qwe', 'qwe@qwe.qwe', 'default.png'),
+(16, 'qwe', '123', 1, 'qwe', 'qwe@qwe.qwe', 'default.png');
 
 -- --------------------------------------------------------
 
@@ -231,6 +269,12 @@ ALTER TABLE `admin`
 ALTER TABLE `konsumen`
   ADD PRIMARY KEY (`idkonsumen`),
   ADD KEY `role_id` (`role_id`);
+
+--
+-- Indexes for table `pesanan`
+--
+ALTER TABLE `pesanan`
+  ADD PRIMARY KEY (`id_pesanan`);
 
 --
 -- Indexes for table `tb_jasa`
@@ -281,13 +325,19 @@ ALTER TABLE `user_role`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `idadmin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idadmin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `konsumen`
 --
 ALTER TABLE `konsumen`
-  MODIFY `idkonsumen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `idkonsumen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
+-- AUTO_INCREMENT for table `pesanan`
+--
+ALTER TABLE `pesanan`
+  MODIFY `id_pesanan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tb_jasa`
@@ -299,13 +349,13 @@ ALTER TABLE `tb_jasa`
 -- AUTO_INCREMENT for table `tb_kategori`
 --
 ALTER TABLE `tb_kategori`
-  MODIFY `idkategori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idkategori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tb_transaksi`
 --
 ALTER TABLE `tb_transaksi`
-  MODIFY `idtransaksi` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idtransaksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tb_vendor`
@@ -317,7 +367,7 @@ ALTER TABLE `tb_vendor`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `idUser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `idUser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `user_role`
@@ -345,8 +395,8 @@ ALTER TABLE `konsumen`
 -- Constraints for table `tb_transaksi`
 --
 ALTER TABLE `tb_transaksi`
-  ADD CONSTRAINT `tb_transaksi_ibfk_1` FOREIGN KEY (`fk_idkonsumen`) REFERENCES `konsumen` (`idkonsumen`),
-  ADD CONSTRAINT `tb_transaksi_ibfk_2` FOREIGN KEY (`fk_idvendor`) REFERENCES `tb_vendor` (`idvendor`);
+  ADD CONSTRAINT `tb_transaksi_ibfk_1` FOREIGN KEY (`fk_idkonsumen`) REFERENCES `user` (`idUser`),
+  ADD CONSTRAINT `tb_transaksi_ibfk_2` FOREIGN KEY (`fk_idvendor`) REFERENCES `tb_jasa` (`idjasa`);
 
 --
 -- Constraints for table `user`

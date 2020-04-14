@@ -128,7 +128,7 @@ class Jasa extends CI_Controller
             'name' => $vendor->nama_vendor
         );
         $this->cart->insert($data);
-        redirect('home');
+        redirect('beranda/pesanan');
     }
 
     public function detail_keranjang()

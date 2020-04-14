@@ -6,26 +6,43 @@ class Admin extends CI_Controller
     {
         parent::__construct();
         $this->load->model('model_admin');
+        $this->load->model('M_All');
         $this->load->library('form_validation');
     }
 
-    public function index()
+    public function header()
     {
         $atas['admin'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
-        $data['admin'] = $this->model_admin->tampil()->result();
         $this->load->view('admin/head');
         $this->load->view('admin/header', $atas);
         $this->load->view('admin/leftside');
+    }
+    public function index()
+    {
+        $this->header();
+        $data['admin'] = $this->model_admin->tampil()->result();
         $this->load->view('admin/konten', $data);
         $this->load->view('admin/js');
     }
 
+    public function rekapVendor()
+    {
+        // code...
+    }
+
+    public function validasiVendor()
+    {
+        // code...
+    }
+
+    public function kategoriVendor()
+    {
+        // code...
+    }
+
     public function ad_pemesanan()
     {
-        $atas['admin'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
-        $this->load->view('admin/head');
-        $this->load->view('admin/header', $atas);
-        $this->load->view('admin/leftside');
+        $this->header();
         $this->load->view('admin/pemesanan');
         $this->load->view('admin/footer');
         $this->load->view('admin/js');
@@ -33,52 +50,61 @@ class Admin extends CI_Controller
 
     public function ad_pesanan()
     {
-        $atas['admin'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
-        $this->load->view('admin/head');
-        $this->load->view('admin/header', $atas);
-        $this->load->view('admin/leftside');
-        $this->load->view('admin/pesanan');
+        $this->header();
+        $data['pesanan'] = $this->M_All->join()->result();
+        $this->load->view('admin/pesanan', $data);
         $this->load->view('admin/footer');
         $this->load->view('admin/js');
     }
+
+    public function prosesPesanan($id)
+    {
+        $where = array('id_pesanan' => $id, );
+        $pesanan = $this->M_All->join_where('id_pesanan = '.$id)->row_array();
+        $data = array(
+            'fk_idkonsumen' => $pesanan['username'],
+            'fk_idvendor' => $pesanan['id_vendor'],
+            'harga' => $pesanan['price'],
+            'paket' => $pesanan['paket'],
+        );
+        $this->M_All->insert('tb_transaksi', $data);
+        $data_pesanan = array('status' => 1, );
+        $this->M_All->update('pesanan', $where, $data_pesanan);
+        // print_r($pesanan);
+        redirect('admin/transaksi');
+    }
+
+    public function transaksi()
+    {
+        $this->header();
+    }
     public function datakon()
     {
-        $atas['admin'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
-        $this->load->view('admin/head');
-        $this->load->view('admin/header', $atas);
-        $this->load->view('admin/leftside');
-        $this->load->view('admin/konten_datakonsumen');
+        $this->header();
+        $data['konsumen'] = $this->db->get_where('konsumen', ['role_id' => 1])->result();
+        $this->load->view('admin/konten_datakonsumen', $data);
         $this->load->view('admin/footer');
         $this->load->view('admin/js');
     }
 
     public function dataven()
     {
-        $atas['admin'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
-        $this->load->view('admin/head');
-        $this->load->view('admin/header', $atas);
-        $this->load->view('admin/leftside');
+        $this->header();
         $this->load->view('admin/konten_datavendor');
         $this->load->view('admin/footer');
         $this->load->view('admin/js');
     }
     public function kelkon()
     {
+        $this->header();
         $data['admin'] = $this->model_admin->tampil()->result();
-        $atas['admin'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
-        $this->load->view('admin/head');
-        $this->load->view('admin/header', $atas);
-        $this->load->view('admin/leftside');
         $this->load->view('admin/konten_kelkonsumen', $data);
         $this->load->view('admin/js');
     }
     public function kelven()
     {
+        $this->header();
         $data['admin'] = $this->model_admin->tampil()->result();
-        $atas['admin'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
-        $this->load->view('admin/head');
-        $this->load->view('admin/header',$atas);
-        $this->load->view('admin/leftside');
         $this->load->view('admin/konten_kelvendor');
         $this->load->view('admin/footer');
         $this->load->view('admin/js');
@@ -86,10 +112,7 @@ class Admin extends CI_Controller
     public function profile()
 
     {
-        $data['admin'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
-        $this->load->view('admin/head');
-        $this->load->view('admin/header', $data);
-        $this->load->view('admin/leftside');
+        $this->header();
         $this->load->view('admin/profile', $data);
         $this->load->view('admin/js');
     }

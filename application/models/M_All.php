@@ -33,11 +33,28 @@ class M_All extends CI_Model{
         return $this->db->get_where($table,$where);
     }
 
-    function join($from, $at)
+    function join()
     {
         $this->db->select('*');
-        $this->db->from($from);
-        $this->db->join($at, 'pemilik.id_pemilik = kosan.id_pemilik');
+        $this->db->from('pesanan');
+        $this->db->join('tb_jasa', 'tb_jasa.idjasa = pesanan.id_vendor');
+        return $this->db->get();
+    }
+
+    function join_user()
+    {
+        $this->db->select('*');
+        $this->db->from('pesanan');
+        $this->db->join('tb_jasa', 'tb_jasa.idjasa = pesanan.id_vendor');
+        $this->db->where($where);
+        return $this->db->get();
+    }
+
+    function join_where($where)
+    {
+        $this->db->select('*');
+        $this->db->from('pesanan');
+        $this->db->join('tb_jasa', 'tb_jasa.idjasa = pesanan.id_vendor');
         return $this->db->get();
     }
 

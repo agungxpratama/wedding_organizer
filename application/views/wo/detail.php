@@ -29,7 +29,7 @@
                 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <img class="d-block w-100" src="<?php base_url('assets/images/card-img-2.jpg/'); ?>" alt="First slide">
+                            <img class="d-block w-100" src="<?= base_url('assets/images/card-img-2.jpg'); ?>" alt="First slide">
                         </div>
                         <!-- <div class="carousel-item">
                             <img class="d-block w-100" src="../assets/images/card-img-2.jpg" alt="Second slide">
@@ -62,10 +62,10 @@
                 </ul>
                 <div class="tab-content" id="myTabContent7">
                     <div class="tab-pane fade show active" id="home-justify" role="tabpanel" aria-labelledby="home-tab-justify">
-                        <p class="lead">Harga : Rp. <?php echo number_format($wo->harga, 0, ',', ' .') ?> </p>
+                        <p class="lead">Harga : Rp. <?php echo number_format($wo->harga, 0, ',', '.') ?> </p>
                         <p class="lead"> <?php echo $wo->keterangan ?> </p>
-                        <a href="<?= base_url('Home/pemesanan') ?>" class="btn btn-secondary">Lanjutkan Pemesanan</a>
-                        <?php echo anchor('jasa/tambah_ke_pesanan/' . $wo->idjasa, '<div class="btn btn-primary">Tambah ke Pesanan
+                        <a href="<?= base_url('beranda/pesanan') ?>" class="btn btn-secondary">Lanjutkan Pemesanan</a>
+                        <?php echo anchor('beranda/tambah_keranjang/' . $wo->idjasa, '<div class="btn btn-primary">Tambah ke Pesanan
                     </div>') ?>
                     </div>
                     <div class="tab-pane fade" id="profile-justify" role="tabpanel" aria-labelledby="profile-tab-justify">

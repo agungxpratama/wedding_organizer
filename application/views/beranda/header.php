@@ -36,7 +36,7 @@
                         <div class="nav-item dropdown nav-user">
                             <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-shopping-cart mr-2"></i>Keranjang ( <?= $this->cart->total_items()?> )</a>
                             <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
-                                <a class="dropdown-item" href="<?= base_url('home/myprofile'); ?>"><i class="fas fa-shopping-cart mr-2"></i>Keranjang <?= $this->cart->total_items()?> Pesanan</a>
+                                <a class="dropdown-item" href="<?= base_url('beranda/detail_keranjang'); ?>"><i class="fas fa-shopping-cart mr-2"></i>Keranjang <?= $this->cart->total_items()?> Pesanan</a>
                             </div>
                             <!-- <div id="custom-search" class="top-search-bar">
                                 <li class="nav-item">
@@ -45,28 +45,31 @@
                                 </li>
                             </div> -->
                         </div>
+                        <?php if ($this->session->userdata('status') == 'login'): ?>
+                            <li class="nav-item dropdown nav-user">
+                                <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="<?= base_url('assets/images/profile/') . $user['image']; ?>" alt="" class="user-avatar-md rounded-circle"></a>
+                                <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
+                                    <div class="nav-user-info">
 
-                        <li class="nav-item dropdown nav-user">
-                            <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user mr-2"></i>Login</a>
-                            <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
-                                <a class="dropdown-item" href="<?= base_url('home/myprofile'); ?>"><i class="fas fa-user mr-2"></i>Login</a>
-                                <a class="dropdown-item" href="<?= base_url('home/myprofile'); ?>"><i class="fas fa-user mr-2"></i>Daftar</a>
-                            </div>
-                        </li>
-                        <li class="nav-item dropdown nav-user">
-                            <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="<?= base_url('assets/images/profile/') . $user['image']; ?>" alt="" class="user-avatar-md rounded-circle"></a>
-                            <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
-                                <div class="nav-user-info">
+                                        <h5 class="mb-0 text-white nav-user-name"> <?php echo $this->session->userdata('username') ?> </h5>
+                                    </div>
 
-                                    <h5 class="mb-0 text-white nav-user-name"> <?php echo $this->session->userdata('username') ?> </h5>
+                                    <a class="dropdown-item" href="<?= base_url('home/myprofile'); ?>"><i class="fas fa-user mr-2"></i>Account</a>
+                                    <a class="dropdown-item" href="#"><i class="fas fa-cog mr-2"></i>Setting</a>
+                                    <a class="dropdown-item" href="<?= base_url('beranda/logout'); ?>"><i class="fas fa-power-off mr-2"></i>Logout</a>
+
                                 </div>
-
-                                <a class="dropdown-item" href="<?= base_url('home/myprofile'); ?>"><i class="fas fa-user mr-2"></i>Account</a>
-                                <a class="dropdown-item" href="#"><i class="fas fa-cog mr-2"></i>Setting</a>
-                                <a class="dropdown-item" href="<?= base_url('login/logout'); ?>"><i class="fas fa-power-off mr-2"></i>Logout</a>
-
-                            </div>
-                        </li>
+                            </li>
+                        <?php endif; ?>
+                        <?php if ($this->session->userdata('status') != 'login'): ?>
+                            <li class="nav-item dropdown nav-user">
+                                <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user mr-2"></i>Login</a>
+                                <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
+                                    <a class="dropdown-item" href="<?= base_url('login'); ?>"><i class="fas fa-user mr-2"></i>Login</a>
+                                    <a class="dropdown-item" href="<?= base_url('login/signup'); ?>"><i class="fas fa-file mr-2"></i>Daftar</a>
+                                </div>
+                            </li>
+                        <?php endif; ?>
                     </ul>
                 </div>
             </nav>
@@ -91,7 +94,7 @@
                             Menu
                         </li>
                         <li class="nav-item ">
-                            <a class="nav-link" href="<?= base_url('home'); ?>"><i class="fas fa-tachometer-alt"></i>Dashboard</a>
+                            <a class="nav-link" href="<?= base_url('beranda'); ?>"><i class="fas fa-tachometer-alt"></i>Dashboard</a>
                             <div id="submenu-1" class="collapse submenu">
                                 <!-- <ul class="nav flex-column"> -->
                                 <!-- <li class="nav-item">
@@ -161,7 +164,7 @@
                             </div>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="<?= base_url('wo') ?>"><i class="fas fa-heart"></i>Wedding Organizer</a>
+                            <a class="nav-link" href="<?= base_url('beranda/wedding_organizer') ?>"><i class="fas fa-heart"></i>Wedding Organizer</a>
                             <!-- <div id="submenu-3" class="collapse submenu" style="">
                                     <ul class="nav flex-column">
                                         <li class="nav-item">
@@ -186,7 +189,7 @@
                                 </div>
                             </li> -->
                         <li class="nav-item ">
-                            <a class="nav-link" href="<?= base_url('paket') ?>"><i class="fas fa-list-alt"></i>Paket Pernikahan</a>
+                            <a class="nav-link" href="<?= base_url('beranda/paket') ?>"><i class="fas fa-list-alt"></i>Paket Pernikahan</a>
                             <!-- <div id="submenu-4" class="collapse submenu" style="">
                                     <ul class="nav flex-column">
                                         <li class="nav-item">
@@ -221,7 +224,7 @@
                                 </div> -->
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="<?= base_url('home/pesanan') ?>"><i class="fas fa-th-list"></i>Pesanan</a>
+                            <a class="nav-link" href="<?= base_url('beranda/pesanan') ?>"><i class="fas fa-th-list"></i>Pesanan</a>
                         </li>
 
                     </ul>

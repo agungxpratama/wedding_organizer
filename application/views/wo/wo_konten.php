@@ -42,14 +42,13 @@
                                     <i class="fa fa-fw fa-star"></i>
                                     <i class="fa fa-fw fa-star"></i>
                                     <i class="fa fa-fw fa-star"></i>
-
+                                    <i class="fa fa-fw fa-star"></i>
                                 </div><br>
                                 <h5><?php echo $wo->kategori ?></h5>
                             </div>
                             <div class="product-btn">
-                                <!-- <a href="#" class="btn btn-primary">Add to Cart</a> -->
-                                <?php echo anchor('wo/detail/' . $wo->idjasa, '<div class="btn btn-primary">Detail
-                    </div>') ?>
+                                <a href="detail_wo/<?= $wo->idjasa ?>" class="btn btn-primary">Detail</a>
+                                <!-- <?php echo anchor('wo/detail/' . $wo->idjasa, '<div class="btn btn-primary">Detail</div>') ?> -->
                                 <a href="#" class="btn btn-outline-light"><i class="fas fa-exchange-alt"></i></a>
                             </div>
                         </div>

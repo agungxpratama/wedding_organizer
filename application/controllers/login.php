@@ -36,22 +36,24 @@ class Login extends CI_Controller
 
             $data = [
                 'username' => $username,
-                'id' => $user['idUser']
+                'id' => $user['idUser'],
+                'role' => $user['role_id'],
+                'status' => 'login',
             ];
 
             $this->session->set_userdata($data);
 
             if ($user['role_id'] == 1) {
-                redirect('home');
+                redirect('beranda');
             } elseif ($user['role_id'] == 2) {
                 redirect('vendor');
             } else {
                 redirect('admin');
             }
-        } else {
+            } else {
             $this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">
             Password dan Username tidak cocok !!
-          </div>');
+            </div>');
 
             redirect('login');
         }
